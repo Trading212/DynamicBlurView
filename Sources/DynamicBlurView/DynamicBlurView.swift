@@ -125,7 +125,7 @@ open class DynamicBlurView: UIView {
 
     func currentImage() -> UIImage? {
         renderingTargetView.flatMap { view in
-            blurLayer.snapshotImageBelowLayer(view.layer, in: renderingTarget.isDeepRendering ? view.bounds : relativeLayerRect)
+            blurLayer.snapshotImage(of: view.layer, in: renderingTarget.isDeepRendering ? view.bounds : relativeLayerRect, renderBelow: (view.window ?? view) == window)
         }
     }
 }

@@ -68,12 +68,16 @@ extension BlurLayer {
         blurLayout = 1
     }
 
-    func snapshotImageBelowLayer(_ layer: CALayer, in rect: CGRect) -> UIImage? {
+    func snapshotImage(of layer: CALayer, in rect: CGRect, renderBelow: Bool) -> UIImage? {
         guard let context = CGContext.imageContext(in: rect, isOpaque: isOpaque, quality: quality) else {
             return nil
         }
 
-        renderBelowLayer(layer, in: context)
+        if renderBelow {
+            renderBelowLayer(layer, in: context)
+        } else {
+            layer.render(in: context)
+        }
 
         defer {
             UIGraphicsEndImageContext()
