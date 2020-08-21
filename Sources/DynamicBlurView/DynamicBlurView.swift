@@ -24,15 +24,26 @@ open class DynamicBlurView: UIView {
         }
     }
 
-    private var renderingTarget: UIView? {
-        window != nil
-            ? (isDeepRendering ? window : superview)
-            : nil
+    private var renderingTargetView: UIView? {
+        guard window != nil else {
+            return nil
+        }
+        
+        switch renderingTarget {
+        case .superview:
+            return superview
+        case let .window(window):
+            return window ?? self.window
+        case let .custom(customTarget):
+            return customTarget()
+        }
     }
 
     private var relativeLayerRect: CGRect {
-        blurLayer.current.convertRect(to: renderingTarget?.layer)
+        blurLayer.current.convertRect(to: renderingTargetView?.layer)
     }
+    
+    open var renderingTarget: RenderingTarget = .superview
 
     /// Radius of blur.
     open var blurRadius: CGFloat {
@@ -57,9 +68,6 @@ open class DynamicBlurView: UIView {
 
     /// Default is 3.
     open var iterations = 3
-
-    /// If the view want to render beyond the layer, should be true.
-    open var isDeepRendering = false
 
     /// When none of tracking mode, it can change the radius of blur with the ratio. Should set from 0 to 1.
     open var blurRatio: CGFloat = 1 {
@@ -90,7 +98,7 @@ open class DynamicBlurView: UIView {
         super.didMoveToWindow()
 
         if trackingMode == .none {
-            renderingTarget?.layoutIfNeeded()
+            renderingTargetView?.layoutIfNeeded()
             staticImage = currentImage()
         }
     }
@@ -116,8 +124,8 @@ open class DynamicBlurView: UIView {
     }
 
     func currentImage() -> UIImage? {
-        renderingTarget.flatMap { view in
-            blurLayer.snapshotImageBelowLayer(view.layer, in: isDeepRendering ? view.bounds : relativeLayerRect)
+        renderingTargetView.flatMap { view in
+            blurLayer.snapshotImageBelowLayer(view.layer, in: renderingTarget.isDeepRendering ? view.bounds : relativeLayerRect)
         }
     }
 }
@@ -127,7 +135,7 @@ extension DynamicBlurView {
         if let blurredImage = (staticImage ?? currentImage()).flatMap(imageBlurred) {
             blurLayer.draw(blurredImage)
 
-            if isDeepRendering {
+            if renderingTarget.isDeepRendering {
                 blurLayer.contentsRect = relativeLayerRect.rectangle(blurredImage.size)
             }
         }

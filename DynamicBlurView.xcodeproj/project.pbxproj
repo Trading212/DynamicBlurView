@@ -21,6 +21,7 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
+		C2883E5724EFB46D00844CAB /* RenderingTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2883E5624EFB46D00844CAB /* RenderingTarget.swift */; };
 		C72CDB09244EF78900AF771E /* CGRect+Conversion.swift in Sources */ = {isa = PBXBuildFile; fileRef = C72CDB08244EF78900AF771E /* CGRect+Conversion.swift */; };
 		C7E48A6024500D5F00D9E4CA /* CALayer+Conversion.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7E48A5F24500D5F00D9E4CA /* CALayer+Conversion.swift */; };
 		OBJ_34 /* BlurLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_11 /* BlurLayer.swift */; };
@@ -53,6 +54,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		C2883E5624EFB46D00844CAB /* RenderingTarget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RenderingTarget.swift; sourceTree = "<group>"; };
 		C72CDB08244EF78900AF771E /* CGRect+Conversion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGRect+Conversion.swift"; sourceTree = "<group>"; };
 		C7E48A5F24500D5F00D9E4CA /* CALayer+Conversion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CALayer+Conversion.swift"; sourceTree = "<group>"; };
 		"DynamicBlurView::DynamicBlurView::Product" /* DynamicBlurView.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = DynamicBlurView.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -153,6 +155,7 @@
 				OBJ_13 /* CGImage+Accelerate.swift */,
 				OBJ_14 /* CaptureQuality.swift */,
 				OBJ_15 /* DynamicBlurView.swift */,
+				C2883E5624EFB46D00844CAB /* RenderingTarget.swift */,
 				OBJ_16 /* TrackingMode.swift */,
 				OBJ_17 /* UIImage+Blur.swift */,
 				C72CDB08244EF78900AF771E /* CGRect+Conversion.swift */,
@@ -248,6 +251,7 @@
 			buildActionMask = 0;
 			files = (
 				OBJ_34 /* BlurLayer.swift in Sources */,
+				C2883E5724EFB46D00844CAB /* RenderingTarget.swift in Sources */,
 				OBJ_35 /* CGContext+CGImage.swift in Sources */,
 				OBJ_36 /* CGImage+Accelerate.swift in Sources */,
 				OBJ_37 /* CaptureQuality.swift in Sources */,
